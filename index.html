@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Som Coffee</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.jpg" alt="Som Coffee Logo">
+      <h1>Som Coffee</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="order.html">dalbo</a></li>
+        <li><a href="contact.html">la xirir</a></li>
+        <li><a href="login.html">isdiwangali</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Advertisement -->
+  <section class="advertisement">
+    <p>☕ Dalab Gaar ah: Iibso 2 Cappuccino, hel 1 bilaash.!</p>
+  </section>
+
+  <!-- Coffee Types -->
+  <section class="coffee-types">
+    <h2>doorashada coffee yadena</h2>
+    <div class="coffee-grid">
+      <div class="coffee-card" onclick="showDetails('Espresso')">
+        <img src="esperito.webp" alt="Espresso">
+        <h3>Espresso</h3>
+      </div>
+      <div class="coffee-card" onclick="showDetails('Cappuccino')">
+        <img src="cuppochino.webp" alt="Cappuccino">
+        <h3>Cappuccino</h3>
+      </div>
+      <div class="coffee-card" onclick="showDetails('Latte')">
+        <img src="lattte.webp" alt="Latte">
+        <h3>Latte</h3>
+      </div>
+      <div class="coffee-card" onclick="showDetails('Mocha')">
+        <img src="mochaa.webp" alt="Mocha">
+        <h3>Mocha</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coffee Details Modal -->
+  <div id="coffeeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="coffeeTitle"></h2>
+      <p id="coffeeDescription"></p>
+    </div>
+  </div>
+<div id="first-warning" class="modal">
+  <div class="modal-content">
+    <h2>⚠ Warning</h2>
+    <p>fadlan kan maha website dhaba kaso <br> lagu iibiyo khaxwada wa website <br>aan u dhisay si an u mujiyo aqonteda.</p>
+    <button onclick="closeWarning()">OK, Continue</button>
+  </div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
