@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Som Coffee — Order Form</title>
+  <style>
+    :root{
+      --brown:#3e2723;
+      --tan:#ffcc80;
+      --bg:#f5f5f5;
+      --white:#fff;
+      --green:#2e7d32;
+      --red:#c62828;
+    }
+    body{
+      font-family: system-ui, Arial, sans-serif;
+      background: var(--bg);
+      margin:0; padding:0;
+      color:#222;
+    }
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      background: var(--brown); color: var(--white);
+      padding: 14px 22px; position: sticky; top:0; z-index:10;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px;
+    }
+    .logo img{ width:40px; height:40px; border-radius:50%; object-fit:cover; background:#fff; }
+    nav ul{ list-style:none; display:flex; gap:16px; padding:0; margin:0; }
+    nav a{ color:var(--white); text-decoration:none; font-weight:600; }
+    nav a:hover{ color: var(--tan); }
+
+    .container{ max-width: 900px; margin: 24px auto; padding: 0 16px; }
+    .card{
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.08);
+      padding: 18px;
+    }
+    h2{ margin:0 0 14px; }
+    .grid{
+      display:grid; grid-template-columns: 1fr 1fr; gap:16px;
+    }
+    .field{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .field label{ font-weight:600; }
+    .field input, .field select, .field textarea{
+      border:1px solid #ddd; border-radius:8px; padding:10px;
+      font-size: 14px; outline:none; background:#fff;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus{
+      border-color: var(--tan); box-shadow: 0 0 0 3px rgba(255,204,128,.25);
+    }
+    .inline{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .price-box{
+      background:#fff7e6; border:1px dashed #f0b24d;
+      padding:10px 12px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;
+    }
+    .total{ font-size:18px; font-weight:700; color: var(--brown); }
+    .btns{ display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; }
+    .btn{
+      border:none; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:700;
+    }
+    .primary{ background: var(--brown); color:#fff; }
+    .primary:hover{ background:#5d4037; }
+    .secondary{ background:#eee; }
+    .secondary:hover{ background:#e0e0e0; }
+
+    .hint{ font-size:12px; color:#666; }
+    .error{ color: var(--red); font-size:12px; margin-top:-4px; }
+    .success-toast{
+      position: fixed; right: 16px; bottom: 16px;
+      background: #e8f5e9; color: #1b5e20; border:1px solid #a5d6a7;
+      padding: 10px 14px; border-radius: 10px; box-shadow: 0 6px 16px rgba(0,0,0,.12);
+      opacity:0; transform: translateY(10px); transition: all .25s ease;
+    }
+    .success-toast.show{ opacity:1; transform: translateY(0); }
+
+    @media (max-width: 720px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.jpg" alt="Som Coffee Logo">
+      <strong>Som Coffee</strong>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="order.html">dalbo</a></li>
+        <li><a href="contact.html">la xirir</a></li>
+        <li><a href="login.html">is diwangali</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container" id="order">
+    <div class="card">
+      <h2>Order your coffee</h2>
+
+      <form id="orderForm" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="customerName">Full name</label>
+            <input id="customerName" name="customerName" type="text" placeholder="e.g., Salman Ali" required />
+            <div class="error" id="nameError"></div>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" placeholder="e.g., 0612345678" required />
+            <div class="hint">Format: 09/061/068/069 + 7 digits</div>
+            <div class="error" id="phoneError"></div>
+          </div>
+
+          <div class="field">
+            <label for="coffeeType">Coffee type</label>
+            <select id="coffeeType" name="coffeeType" required>
+              <option value="">Select…</option>
+              <option value="Espresso">Espresso</option>
+              <option value="Cappuccino">Cappuccino</option>
+              <option value="Latte">Latte</option>
+              <option value="Mocha">Mocha</option>
+            </select>
+            <div class="error" id="typeError"></div>
+          </div>
+
+          <div class="field">
+            <label for="size">Size</label>
+            <select id="size" name="size" required>
+              <option value="">Choose…</option>
+              <option value="Small">Small</option>
+              <option value="Medium">Medium</option>
+              <option value="Large">Large</option>
+            </select>
+            <div class="error" id="sizeError"></div>
+          </div>
+
+          <div class="field">
+            <label>Extras</label>
+            <div class="inline">
+              <label><input type="checkbox" name="extras" value="Extra shot" /> Extra shot (+$1.00)</label>
+              <label><input type="checkbox" name="extras" value="Oat milk" /> Oat milk (+$0.50)</label>
+              <label><input type="checkbox" name="extras" value="Syrup" /> Syrup (+$0.50)</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="quantity">Quantity</label>
+            <input id="quantity" name="quantity" type="number" min="1" value="1" required />
+            <div class="error" id="qtyError"></div>
+          </div>
+
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Sweetness level, no foam, etc."></textarea>
+          </div>
+        </div>
+
+        <div class="price-box" style="margin-top:12px;">
+          <div>
+            <strong>Live price</strong>
+            <div class="hint">Updates as you change options</div>
+          </div>
+          <div class="total" id="totalPrice">$0.00</div>
+        </div>
+
+        <div class="btns">
+          <button type="submit" class="btn primary">Place order</button>
+          <button type="reset" class="btn secondary">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="success-toast">Order placed! We’ll contact you shortly.</div>
+
+  <script>
+    // Base prices (USD) per coffee type and size
+    const BASE_PRICES = {
+      Espresso: { Small: 2.0, Medium: 2.5, Large: 3.0 },
+      Cappuccino: { Small: 3.0, Medium: 3.5, Large: 4.0 },
+      Latte: { Small: 3.0, Medium: 3.5, Large: 4.0 },
+      Mocha: { Small: 3.5, Medium: 4.0, Large: 4.5 }
+    };
+    const EXTRA_PRICES = {
+      "Extra shot": 1.0,
+      "Oat milk": 0.5,
+      "Syrup": 0.5
+    };
+
+    const form = document.getElementById('orderForm');
+    const totalPriceEl = document.getElementById('totalPrice');
+    const toast = document.getElementById('toast');
+
+    const fields = {
+      name: document.getElementById('customerName'),
+      phone: document.getElementById('phone'),
+      type: document.getElementById('coffeeType'),
+      size: document.getElementById('size'),
+      qty: document.getElementById('quantity'),
+    };
+    const errors = {
+      name: document.getElementById('nameError'),
+      phone: document.getElementById('phoneError'),
+      type: document.getElementById('typeError'),
+      size: document.getElementById('sizeError'),
+      qty: document.getElementById('qtyError'),
+    };
+
+    // Calculate price
+    function calcPrice(){
+      const type = fields.type.value;
+      const size = fields.size.value;
+      const qty = Number(fields.qty.value) || 0;
+
+      if(!type || !size || qty < 1){
+        totalPriceEl.textContent = '$0.00';
+        return;
+      }
+
+      let price = BASE_PRICES[type][size];
+      // Extras
+      document.querySelectorAll('input[name="extras"]:checked')
+        .forEach(chk => price += EXTRA_PRICES[chk.value] || 0);
+
+      const total = price * qty;
+      totalPriceEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Simple validation
+    function validate(){
+      let ok = true;
+
+      if(!fields.name.value.trim()){
+        errors.name.textContent = 'Please enter your name.';
+        ok = false;
+      } else errors.name.textContent = '';
+
+      // Basic Somali phone pattern (starts with 09/061/068/069 then 7 digits)
+      const phone = fields.phone.value.trim();
+      const phonePattern = /^(09|061|068|069)\d{7}$/;
+      if(!phonePattern.test(phone)){
+        errors.phone.textContent = 'Enter a valid phone (e.g., 0612345678).';
+        ok = false;
+      } else errors.phone.textContent = '';
+
+      if(!fields.type.value){
+        errors.type.textContent = 'Select a coffee type.';
+        ok = false;
+      } else errors.type.textContent = '';
+
+      if(!fields.size.value){
+        errors.size.textContent = 'Choose a size.';
+        ok = false;
+      } else errors.size.textContent = '';
+
+      const qty = Number(fields.qty.value);
+      if(!(qty >= 1)){
+        errors.qty.textContent = 'Quantity must be at least 1.';
+        ok = false;
+      } else errors.qty.textContent = '';
+
+      return ok;
+    }
+
+    // Show toast
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(()=> toast.classList.remove('show'), 2500);
+    }
+
+    // Live updates
+    ['change','input'].forEach(evt=>{
+      form.addEventListener(evt, calcPrice);
+    });
+    calcPrice();
+
+    // Submit handler
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      if(!validate()) return;
+
+      const data = new FormData(form);
+      const extras = Array.from(document.querySelectorAll('input[name="extras"]:checked')).map(e=>e.value);
+      const summary = {
+        name: data.get('customerName'),
+        phone: data.get('phone'),
+        coffeeType: data.get('coffeeType'),
+        size: data.get('size'),
+        quantity: Number(data.get('quantity')),
+        extras,
+        notes: data.get('notes') || '',
+        total: totalPriceEl.textContent
+      };
+
+      console.log('Order summary:', summary); // You can send this to your server
+      showToast('Order placed! We’ll contact you shortly.');
+      form.reset();
+      calcPrice();
+    });
+
+    // Reset handler
+    form.addEventListener('reset', ()=>{
+      setTimeout(()=>{
+        Object.values(errors).forEach(el=> el.textContent = '');
+        calcPrice();
+      }, 0);
+    });
+  </script>
+</body>
+</html>
