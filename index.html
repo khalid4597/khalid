@@ -1,70 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Som Coffee</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khalid Muhidin Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    .navbar {
+      background: #fff;
+      padding: 20px 60px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #0077b6;
+      font-weight: 500;
+    }
+
+    .navbar a:hover {
+      color: #005f8c;
+    }
+
+    section {
+      padding: 60px 80px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .hero-text h1 span {
+      color: #0077b6;
+    }
+
+    .hero-text h2 {
+      font-size: 20px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      background: #0077b6;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .button:hover {
+      background: #005f8c;
+    }
+
+    .hero-img img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .skills ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .skills li {
+      background: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .contact form {
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .contact button {
+      background: #0077b6;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .contact button:hover {
+      background: #005f8c;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      margin-right: 15px;
+      font-size: 24px;
+      color: #0077b6;
+    }
+
+    .social-icons a:hover {
+      color: #005f8c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 40px 20px;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .navbar nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img src="logo.jpg" alt="Som Coffee Logo">
-      <h1>Som Coffee</h1>
+
+<header class="navbar">
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-text">
+    <h1>Hello, I'm <span>Khalid Muhidin</span></h1>
+    <h2>Front-End Web Developer 💻</h2>
+    <p>I build modern, responsive websites that solve real-world problems and enhance user experience.</p>
+    <a href="#contact" class="button">Get in Touch</a>
+  </div>
+  <div class="hero-img">
+    <img src="front.jpg" alt="Web Developer Graphic" />
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2>👤 About Me</h2>
+  <p>
+    My name is Khalid Muhidin Mohamed. I am a university student in Mogadishu, Somalia, passionate about front-end web development. I enjoy creating websites that represent Somali culture and language while making communication easier.
+  </p>
+</section>
+
+<section id="skills" class="skills">
+  <h2>⚡ Skills</h2>
+  <ul>
+    <li>💻 HTML</li>
+    <li>🎨 CSS</li>
+    <li>⚡ JavaScript</li>
+    <li>🔧 Responsive Design</li>
+    <li>🌐 Git & GitHub</li>
+  </ul>
+</section>
+
+<section id="projects" class="projects">
+  <h2>📂 Projects</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <h3>Portfolio Website</h3>
+      <p>A responsive personal portfolio showcasing my skills and projects.</p>
     </div>
-    <nav>
-      <ul>
-        <li><a href="order.html">dalbo</a></li>
-        <li><a href="contact.html">la xirir</a></li>
-        <li><a href="login.html">isdiwangali</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Advertisement -->
-  <section class="advertisement">
-    <p>☕ Dalab Gaar ah: Iibso 2 Cappuccino, hel 1 bilaash.!</p>
-  </section>
-
-  <!-- Coffee Types -->
-  <section class="coffee-types">
-    <h2>doorashada coffee yadena</h2>
-    <div class="coffee-grid">
-      <div class="coffee-card" onclick="showDetails('Espresso')">
-        <img src="esperito.webp" alt="Espresso">
-        <h3>Espresso</h3>
-      </div>
-      <div class="coffee-card" onclick="showDetails('Cappuccino')">
-        <img src="cuppochino.webp" alt="Cappuccino">
-        <h3>Cappuccino</h3>
-      </div>
-      <div class="coffee-card" onclick="showDetails('Latte')">
-        <img src="lattte.webp" alt="Latte">
-        <h3>Latte</h3>
-      </div>
-      <div class="coffee-card" onclick="showDetails('Mocha')">
-        <img src="mochaa.webp" alt="Mocha">
-        <h3>Mocha</h3>
-      </div>
+    <div class="project-card">
+      <h3>Somali Culture Blog</h3>
+      <p>A blog site highlighting Somali traditions and language with modern design.</p>
     </div>
-  </section>
-
-  <!-- Coffee Details Modal -->
-  <div id="coffeeModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2 id="coffeeTitle"></h2>
-      <p id="coffeeDescription"></p>
+    <div class="project-card">
+      <h3>Interactive Quiz App</h3>
+      <p>A JavaScript-based quiz application for learning and fun.</p>
     </div>
   </div>
-<div id="first-warning" class="modal">
-  <div class="modal-content">
-    <h2>⚠ Warning</h2>
-    <p>fadlan kan maha website dhaba kaso <br> lagu iibiyo khaxwada wa website <br>aan u dhisay si an u mujiyo aqonteda.</p>
-    <button onclick="closeWarning()">OK, Continue</button>
+</section>
+
+<section id="contact" class="contact">
+  <h2>📧 Contact Me</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Your Email" required />
+    <textarea placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:example@email.com"><i class="fas fa-envelope"></i></a>
   </div>
-</div>
-  <script src="script.js"></script>
+</section>
+
+<footer>
+  <p>© 2025 Khalid Muhidin | Front-End Web Developer</p>
+</footer>
+
 </body>
 </html>
